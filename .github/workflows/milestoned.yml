@@ -6,12 +6,13 @@ on:
     types: [milestoned]
 
 jobs:
-  github-actions-automate-projects:
+  add-to-project:
+    name: Add issue to project
     runs-on: ubuntu-latest
     steps:
-    - name: add-new-issues-to-repository-based-project-column
-      uses: docker://takanabe/github-actions-automate-projects:v0.0.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_PROJECT_URL: https://github.com/users/stilnat/projects/6
-        GITHUB_PROJECT_COLUMN_NAME: Todo
+      - uses: actions/add-to-project@RELEASE_VERSION
+        with:
+          # You can target a project in a different organization
+          # to the issue
+          project-url: https://github.com/users/stilnat/projects/6
+          github-token: ${{ secrets.GHPROJECT_TOKEN }}
