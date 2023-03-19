@@ -4,6 +4,8 @@ name: milestone to project issues
 on:
   issues:
     types: [milestoned]
+  pull_request:
+    types: [milestoned]
 
 jobs:
   add-to-project:
