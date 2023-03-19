@@ -5,17 +5,14 @@ on:
   issues:
     types: [milestoned]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  assign_one_project:
+  add-to-project:
+    name: Add issue to project
     runs-on: ubuntu-latest
-    name: Assign to One Project
     steps:
-    - name: Assign issues and pull requests with `bug` label to project 3
-      uses: srggrs/assign-one-project-github-action@1.2.1
-      with:
-        project: 'https://github.com/users/stilnat/projects/6'
-        column_name: 'To Do'
+      - uses: actions/add-to-project@0.4.1
+        with:
+          # You can target a project in a different organization
+          # to the issue
+          project-url: https://github.com/users/stilnat/projects/6
+          github-token: ${{ secrets.GHPROJECT_TOKEN }}
